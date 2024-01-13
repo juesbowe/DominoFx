@@ -4,18 +4,24 @@
  */
 package ec.edu.espol.domino;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import modelo.Ficha;
 import modelo.Juego;
 import modelo.Jugador;
@@ -36,16 +42,6 @@ public class DominoController implements Initializable {
     private AnchorPane Tablero;
     @FXML
     private AnchorPane mod;
-    @FXML
-    private HBox ManoMaq;
-    @FXML
-    private HBox ManoTab;
-    @FXML
-    private HBox ManoJug;
-    @FXML
-    private Label NomJu;
-    @FXML
-    private Label maq;
 
     /**
      * Initializes the controller class.
@@ -57,44 +53,48 @@ public class DominoController implements Initializable {
         // TODO  
     @FXML
     private void Start(MouseEvent event) {
-        mod.getChildren().clear();
-        juego.agregarJugador(" Jugador 0");
-        juego.agregarJugador("Maquina");
-        NomJu.setText("Jugador 1");
-        maq.setText("Maquina");
-        mod.getChildren().addAll(NomJu,maq);
-        for (Jugador jugador : juego.getJugadores()){
-            if(jugador.getNombre().equalsIgnoreCase("Maquina")){
-                ArrayList<Ficha> mano= jugador.getMano();
-                System.out.println(mano);
-                for(Ficha ficha: mano){
-                    System.out.println("fichas/"+"Ficha"+ficha.getLado1()+"."+ficha.getLado2()+".png");
-                    ImageView imv= new ImageView("fichas/"+"Ficha"+ficha.getLado1()+"."+ficha.getLado2()+".png");
-                    imv.setFitWidth(90);
-                    imv.setFitHeight(120);
-                    ManoMaq.getChildren().addAll(imv);
-                    ManoMaq.setSpacing(20);
-                    
-                }
-            }else{
-                ArrayList<Ficha> mano= jugador.getMano();
-                System.out.println(mano);
-                for(Ficha ficha: mano){
-                    System.out.println("fichas/"+"Ficha"+ficha.getLado1()+"."+ficha.getLado2()+".png");
-                    ImageView imv= new ImageView("fichas/"+"Ficha"+ficha.getLado1()+"."+ficha.getLado2()+".png");
-                    imv.setFitWidth(90);
-                    imv.setFitHeight(120);
-                    ManoJug.getChildren().addAll(imv);
-                    ManoJug.setSpacing(20);
-                    
-                }
-            
-            }
-           
+        try {
+            App.setRoot("Tablero");
+        } catch (IOException ex) {
         }
-        mod.getChildren().addAll(ManoJug, ManoMaq);
+       
+//        juego.agregarJugador(" Jugador 0");
+//        juego.agregarJugador("Maquina");
+//        NomJu.setText("Jugador 1");
+//        maq.setText("Maquina");
+//        mod.getChildren().addAll(NomJu,maq);
+//        for (Jugador jugador : juego.getJugadores()){
+//            if(jugador.getNombre().equalsIgnoreCase("Maquina")){
+//                ArrayList<Ficha> mano= jugador.getMano();
+//                System.out.println(mano);
+//                for(Ficha ficha: mano){
+//                    System.out.println("fichas/"+"Ficha"+ficha.getLado1()+"."+ficha.getLado2()+".png");
+//                    ImageView imv= new ImageView("fichas/"+"Ficha"+ficha.getLado1()+"."+ficha.getLado2()+".png");
+//                    imv.setFitWidth(90);
+//                    imv.setFitHeight(120);
+//                    ManoMaq.getChildren().addAll(imv);
+//                    ManoMaq.setSpacing(20);
+//                    
+//                }
+//            }else{
+//                ArrayList<Ficha> mano= jugador.getMano();
+//                System.out.println(mano);
+//                for(Ficha ficha: mano){
+//                    System.out.println("fichas/"+"Ficha"+ficha.getLado1()+"."+ficha.getLado2()+".png");
+//                    ImageView imv= new ImageView("fichas/"+"Ficha"+ficha.getLado1()+"."+ficha.getLado2()+".png");
+//                    imv.setFitWidth(90);
+//                    imv.setFitHeight(120);
+//                    ManoJug.getChildren().addAll(imv);
+//                    ManoJug.setSpacing(20);
+//                    
+//                }
+//            
+//            }
+//           
+//        }
+//        mod.getChildren().addAll(ManoJug, ManoMaq);
+//    }
     }
-    
 }
                 
         
